@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form content</title>
+</head>
+
+<body>
+    <header>
+        <h1>Navigation</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="table.html">Prices</a></li>
+                <li><a href="form.html">Request Form</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <br>
+        <h2>More information request form</h2>
+        <div id="form-part">
+            <form action="#" method="post">
+                <label for="dropdown">Choose an option:</label>
+                <select id="dropdown" name="dropdown">
+                    <option value="option1">BMW X3</option>
+                    <option value="option2">BMW X5</option>
+                    <option value="option3">BMW X7</option>
+                </select>
+                <br><br>
+                <span>Choose a color:</span><br>
+                <input type="radio" id="red" name="color" value="red">
+                <label for="red">Red</label>
+                <input type="radio" id="black" name="color" value="black">
+                <label for="black">Black</label>
+                <input type="radio" id="blue" name="color" value="blue" checked>
+                <label for="blue">Blue</label>
+                <br><br>
+                <input type="checkbox" id="notify" name="notify">
+                <label for="notify">Notify me</label>
+                <br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+            <div id="x3-black" style="display:none;">
+                <img src="images/x3_black.png" alt="BMW X3 Black" style="width: 256px;">
+            </div>
+            <div id="x3-blue" style="display:none;">
+                <img src="images/x3_blue.png" alt="BMW X3 Blue" style="width: 256px;">
+            </div>
+            <div id="x3-red" style="display:none;">
+                <img src="images/x3_red.png" alt="BMW X3 Red" style="width: 256px;">
+            </div>
+            <div id="x5-black" style="display:none;">
+                <img src="images/x5_black.png" alt="BMW X5 Black" style="width: 256px;">
+            </div>
+            <div id="x5-blue" style="display:none;">
+                <img src="images/x5_blue.png" alt="BMW X5 Blue" style="width: 256px;">
+            </div>
+            <div id="x5-red" style="display:none;">
+                <img src="images/x5_red.png" alt="BMW X5 Red" style="width: 256px;">
+            </div>
+            <div id="x7-black" style="display:none;">
+                <img src="images/x7_black.png" alt="BMW X7 Black" style="width: 256px;">
+            </div>
+            <div id="x7-blue" style="display:none;">
+                <img src="images/x7_blue.png" alt="BMW X7 Blue" style="width: 256px;">
+            </div>
+            <div id="x7-red" style="display:none;">
+                <img src="images/x7_red.png" alt="BMW X7 Red" style="width: 256px;">
+            </div>
+        </div>
+        <div id="thankyou-message"></div>
+    </main>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            var selectedIndex = document.getElementById('dropdown').selectedIndex;
+            var model = document.getElementById('dropdown').options[selectedIndex].text;
+            var notify = document.getElementById('notify').checked ? 'notified' : 'not notified';
+            var selectedColor = document.querySelector('input[name="color"]:checked').value;
+            var message = 'Thank you for your interest in the ' + model + ', you will be ' + notify + '.';
+            
+            document.getElementById('thankyou-message').textContent = message;    
+            document.getElementById('form-part').style.display = 'none';
+            
+
+            if (model === 'BMW X3') {
+                if (selectedColor === 'red') {
+                    document.getElementById('x3-red').style.display = 'block';
+                } else if (selectedColor == 'blue') {
+                    document.getElementById('x3-blue').style.display = 'block';
+                } else {
+                    document.getElementById('x3-black').style.display = 'block';
+                }
+            }
+
+            if (model === 'BMW X5') {
+                if (selectedColor === 'red') {
+                    document.getElementById('x5-red').style.display = 'block';
+                } else if (selectedColor == 'blue') {
+                    document.getElementById('x5-blue').style.display = 'block';
+                } else {
+                    document.getElementById('x5-black').style.display = 'block';
+                }
+            }
+
+            if (model === 'BMW X7') {
+                if (selectedColor === 'red') {
+                    document.getElementById('x7-red').style.display = 'block';
+                } else if (selectedColor == 'blue') {
+                    document.getElementById('x7-blue').style.display = 'block';
+                } else {
+                    document.getElementById('x7-black').style.display = 'block';
+                }
+            }
+        }
+        
+        document.querySelector('form').addEventListener('submit', handleFormSubmit);
+    </script>
+</body>
+
+</html>
